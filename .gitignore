@@ -27,10 +27,29 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env.development
+.env.test
+.env.production
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts 
+next-env.d.ts
+
+# Docker
+.docker/
+
+# Google Cloud
+.gcloudignore
+gcp-key.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db 
