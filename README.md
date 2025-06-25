@@ -2,209 +2,185 @@
 
 Site institucional da ExecCorp - Transporte Corporativo, uma empresa especializada em soluções premium de mobilidade corporativa.
 
-## Tecnologias Utilizadas
+**Este projeto foi migrado para PHP puro para máxima compatibilidade e facilidade de deploy.**
 
-- Next.js 14
-- React 18
-- TypeScript
-- Tailwind CSS
-- React Icons
-- Framer Motion
-- HeadlessUI
-- Docker
-- Google Cloud Run
+## 🚀 Tecnologias Utilizadas
 
-## Requisitos
+- **PHP 8+** - Backend robusto
+- **HTML5** - Estrutura semântica moderna
+- **CSS3** - Design system customizado com variáveis CSS
+- **JavaScript ES6+** - Interatividade moderna
+- **Font Awesome 6** - Ícones profissionais
+- **Google Fonts** - Tipografia Inter
 
-- Node.js 18.17 ou superior
-- npm ou yarn
-- Docker (para containerização)
-- Google Cloud SDK (para deploy na nuvem)
-
-## Instalação
-
-1. Clone o repositório:
-```bash
-git clone https://github.com/inovacybersolucoes/site_teste_execcorp.git
-cd site_teste_execcorp
-```
-
-2. Instale as dependências:
-```bash
-npm install
-# ou
-yarn install
-```
-
-3. Execute o servidor de desenvolvimento:
-```bash
-npm run dev
-# ou
-yarn dev
-```
-
-4. Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
-
-## Docker
-
-### Build Local
-
-Para construir e executar a aplicação usando Docker:
-
-```bash
-# Construir a imagem
-docker build -t execcorp-website .
-
-# Executar o container
-docker run -p 3000:3000 execcorp-website
-```
-
-### Docker Compose
-
-Para desenvolvimento com Docker Compose:
-
-```bash
-# Construir e executar
-docker-compose up --build
-
-# Executar em background
-docker-compose up -d
-```
-
-### Script Automatizado
-
-Use o script de deploy para facilitar o processo:
-
-```bash
-# Build local
-chmod +x scripts/deploy.sh
-./scripts/deploy.sh local
-
-# Deploy para Cloud Run
-./scripts/deploy.sh cloud
-```
-
-## Deploy no Google Cloud Run
-
-### Pré-requisitos
-
-1. Instale o [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)
-2. Autentique-se:
-```bash
-gcloud auth login
-```
-
-3. Configure o projeto:
-```bash
-gcloud config set project SEU_PROJECT_ID
-```
-
-### Deploy Automático
-
-```bash
-# Usando o script
-./scripts/deploy.sh cloud
-
-# Ou manualmente
-gcloud builds submit --config cloudbuild.yaml .
-```
-
-### Deploy Manual
-
-```bash
-# 1. Habilitar APIs
-gcloud services enable cloudbuild.googleapis.com
-gcloud services enable run.googleapis.com
-gcloud services enable containerregistry.googleapis.com
-
-# 2. Build da imagem
-docker build -t gcr.io/SEU_PROJECT_ID/execcorp-website .
-
-# 3. Push para Container Registry
-docker push gcr.io/SEU_PROJECT_ID/execcorp-website
-
-# 4. Deploy no Cloud Run
-gcloud run deploy execcorp-website \
-  --image gcr.io/SEU_PROJECT_ID/execcorp-website \
-  --region us-central1 \
-  --platform managed \
-  --allow-unauthenticated \
-  --port 3000 \
-  --memory 512Mi \
-  --cpu 1
-```
-
-## Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
 ```
-src/
-├── app/                    # Páginas e layouts da aplicação
-├── components/            # Componentes reutilizáveis
-├── styles/               # Estilos globais e configurações
-└── hooks/                # Hooks customizados
-scripts/                  # Scripts de automação
-├── deploy.sh            # Script de deploy
-Dockerfile               # Configuração Docker
-docker-compose.yml       # Configuração Docker Compose
-cloudbuild.yaml         # Configuração Cloud Build
+ExecCorp/
+├── php/                    # 🎯 PROJETO PRINCIPAL
+│   ├── index.php          # Página inicial
+│   ├── servicos.php       # Página de serviços
+│   ├── sobre.php          # Página sobre a empresa
+│   ├── contato.php        # Página de contato
+│   ├── termos-de-uso.php  # Termos de uso
+│   ├── politica-de-privacidade.php # Política de privacidade
+│   ├── .htaccess          # Configurações Apache
+│   ├── README.md          # Documentação detalhada
+│   ├── includes/          # Configurações e templates
+│   ├── components/        # Componentes reutilizáveis
+│   ├── css/               # Estilos customizados
+│   ├── js/                # JavaScript interativo
+│   └── images/            # Recursos visuais
+├── .git/                  # Controle de versão
+├── .gitignore            # Arquivos ignorados
+└── README.md             # Este arquivo
 ```
 
-## Scripts Disponíveis
+## 🎯 Início Rápido
 
-- `npm run dev` - Inicia o servidor de desenvolvimento
-- `npm run build` - Cria uma versão otimizada para produção
-- `npm run start` - Inicia o servidor de produção
-- `npm run lint` - Executa a verificação de linting
+### Requisitos
+- **PHP 7.4+** (recomendado PHP 8.0+)
+- **Apache** ou **Nginx**
+- **mod_rewrite** habilitado (Apache)
 
-## Configurações de Produção
+### Instalação
 
-### Variáveis de Ambiente
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/inovacybersolucoes/site_teste_execcorp.git
+   cd site_teste_execcorp
+   ```
 
-Crie um arquivo `.env.local` para desenvolvimento:
+2. **Configure o servidor web apontando para a pasta `php/`:**
+   ```bash
+   # Apache
+   DocumentRoot /caminho/para/site_teste_execcorp/php
+   
+   # Nginx
+   root /caminho/para/site_teste_execcorp/php;
+   ```
 
-```env
-NEXT_PUBLIC_API_URL=https://api.execcorp.com
-NEXT_PUBLIC_ANALYTICS_ID=your-analytics-id
+3. **Configure as informações da empresa em `php/includes/config.php`**
+
+4. **Acesse o site no navegador**
+
+### Configuração Rápida
+
+Edite o arquivo `php/includes/config.php`:
+
+```php
+// Informações da empresa
+define('COMPANY_NAME', 'Sua Empresa');
+define('COMPANY_EMAIL', 'contato@suaempresa.com');
+define('COMPANY_PHONE', '+55 (XX) XXXX-XXXX');
+define('COMPANY_ADDRESS', 'Seu endereço completo');
+
+// URLs das redes sociais
+define('FACEBOOK_URL', 'https://facebook.com/suaempresa');
+define('INSTAGRAM_URL', 'https://instagram.com/suaempresa');
+define('LINKEDIN_URL', 'https://linkedin.com/company/suaempresa');
 ```
 
-### Otimizações
+## ✨ Funcionalidades
 
-- **Output Standalone**: Configurado para builds otimizados
-- **Compressão**: Habilitada para melhor performance
-- **Headers de Segurança**: Configurados automaticamente
-- **Telemetria**: Desabilitada em produção
+### 🎨 Design & UX
+- ✅ **Totalmente Responsivo** - Mobile, tablet e desktop
+- ✅ **Design Moderno** - Interface clean e profissional
+- ✅ **Animações Suaves** - Transições e efeitos visuais
+- ✅ **Performance Otimizada** - Carregamento rápido
 
-## Monitoramento
+### 🔧 Funcionalidades Técnicas
+- ✅ **Slideshow Interativo** - Galeria de imagens com navegação
+- ✅ **Menu Mobile** - Hamburger menu responsivo
+- ✅ **Formulário de Contato** - Com validação JavaScript
+- ✅ **Newsletter** - Sistema de inscrição
+- ✅ **SEO Otimizado** - Meta tags e structured data
+- ✅ **Scroll Animations** - Elementos animados no scroll
 
-### Health Check
+### 🛡️ Segurança
+- ✅ **Headers de Segurança** - Proteção contra ataques
+- ✅ **Sanitização de Dados** - Prevenção XSS
+- ✅ **Configuração Segura** - PHP e Apache otimizados
+- ✅ **LGPD Compliance** - Política de privacidade
 
-A aplicação inclui health checks automáticos:
-- Endpoint: `http://localhost:3000/`
-- Intervalo: 30s
-- Timeout: 10s
+### 📄 Páginas Incluídas
+- 🏠 **Home** - Apresentação da empresa e serviços
+- 🚗 **Serviços** - Detalhamento dos serviços oferecidos
+- 🏢 **Sobre** - História, missão e valores
+- 📞 **Contato** - Formulário e informações de contato
+- 📋 **Termos de Uso** - Termos legais
+- 🔒 **Política de Privacidade** - Proteção de dados
 
-### Logs
+## 🎨 Personalização
 
-Para visualizar logs no Cloud Run:
+### Cores do Site
+Edite as variáveis CSS em `php/css/style.css`:
 
-```bash
-gcloud logs read --service=execcorp-website --region=us-central1
+```css
+:root {
+    --primary: #2563eb;      /* Azul principal */
+    --secondary: #0f172a;    /* Azul escuro */
+    --accent: #06b6d4;       /* Azul claro */
+    --background: #f8fafc;   /* Cinza claro */
+}
 ```
 
-## Contribuindo
+### Conteúdo
+- **Textos:** Modifique os arrays em `php/includes/config.php`
+- **Imagens:** Substitua as imagens em `php/images/`
+- **Serviços:** Edite o array `$services` no config
+- **Features:** Edite o array `$features` no config
 
-1. Crie um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Faça commit das suas alterações (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
+## 🚀 Deploy
 
-## Licença
+### Servidor Compartilhado
+1. Faça upload da pasta `php/` via FTP
+2. Configure o domínio para apontar para a pasta
+3. Ajuste as configurações em `config.php`
 
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+### VPS/Dedicado
+1. Clone o repositório no servidor
+2. Configure o Apache/Nginx
+3. Configure SSL/HTTPS
+4. Teste todas as funcionalidades
 
-## Suporte
+### Checklist de Deploy
+- [ ] Configurar SSL/HTTPS
+- [ ] Atualizar informações da empresa
+- [ ] Testar formulários
+- [ ] Configurar backup
+- [ ] Testar responsividade
+- [ ] Verificar SEO
 
-Para suporte técnico, entre em contato:
-- Email: dev@execcorp.com.br
-- Issues: [GitHub Issues](https://github.com/inovacybersolucoes/site_teste_execcorp/issues) 
+## 📊 Performance
+
+O site foi otimizado para máxima performance:
+- **CSS Minificado** - Estilos otimizados
+- **JavaScript Eficiente** - Código modular
+- **Imagens Otimizadas** - Lazy loading
+- **Cache Configurado** - Headers apropriados
+- **GZIP Habilitado** - Compressão automática
+
+## 🆘 Suporte
+
+Para dúvidas ou problemas:
+- **📧 Email:** dev@execcorp.com.br
+- **📖 Documentação:** Veja `php/README.md` para detalhes técnicos
+- **🐛 Issues:** [GitHub Issues](https://github.com/inovacybersolucoes/site_teste_execcorp/issues)
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+
+---
+
+## 🎯 Por que PHP?
+
+Esta versão em PHP oferece:
+- **✅ Compatibilidade Universal** - Funciona em qualquer servidor
+- **✅ Facilidade de Deploy** - Sem build process
+- **✅ Manutenção Simples** - Código direto e claro
+- **✅ Performance Sólida** - Otimizado para produção
+- **✅ SEO Friendly** - Renderização server-side
+
+**ExecCorp - Transporte Corporativo Premium** 🚗✨ 
